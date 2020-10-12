@@ -1,16 +1,17 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteFile {
-    private List<Product> productList;
+//    private List<Product> productList;
 
-    public void writeFile() {
+    public void writeFile(List<Product> productList) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(new File("filetext.txt"));
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(this.productList);
+            objectOutputStream.writeObject(productList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -22,13 +23,14 @@ public class ReadWriteFile {
         }
     }
 
-    public void readFile() {
+    public List<Product> readFile() {
+        List<Product> products = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
         try {
             fileInputStream = new FileInputStream(new File("filetext.txt"));
             objectInputStream = new ObjectInputStream(fileInputStream);
-            productList = (List<Product>) objectInputStream.readObject();
+            products = (List<Product>) objectInputStream.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -39,6 +41,7 @@ public class ReadWriteFile {
             closeIS(fileInputStream);
             closeIS(objectInputStream);
         }
+        return products;
     }
     public void closeIS (InputStream is) {
         if (is != null) {
