@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,11 +22,15 @@ public class Methods {
     }
 
     public void add() {
-        int id;
+        int id = 0;
         do {
-            System.out.println("Xin mời nhập id sản phẩm");
-            id = Integer.parseInt(sc.nextLine());
-        }while (checkDuplication(id));
+            try {
+                System.out.println("Xin mời nhập id sản phẩm");
+                id = Integer.parseInt(sc.nextLine());
+            }catch (NumberFormatException e) {
+                System.out.println("Sai số, xin mời nhập lại:");
+            }
+        }while (checkDuplication(id) || id == 0);
         String name = inputName();
         long price = inputPrice();
         String manufacturer = inputManufacturer();
@@ -36,9 +41,73 @@ public class Methods {
         readWriteFile.writeFile(productList);
     }
 
+    // Hiển thị thông tin teo tên
+    public void displayProductByName() {
+        String name = inputName();
+        for (Product product :
+                productList) {
+            if (name.equals(product.getName())) {
+                System.out.println(product.toString());
+            }
+        }
+
+    }
+    // Sửa thông tin sản phẩm
+    public void edit() {
+        int id = inputID();
+        for (Product product :
+                productList) {
+            if (id == product.getId()) {
+                String name = inputName();
+                long price = inputPrice();
+                String manufaturer = inputManufacturer();
+                int amount = inputAmount();
+                String origin = inputOrigin();
+                product.setName(name);
+                product.setPrice(price);
+                product.setManufacturer(manufaturer);
+                product.setAmount(amount);
+                product.setOrigin(origin);
+            }
+        }
+        readWriteFile.writeFile(productList);
+    }
+    // Xoá sản phẩm theo ID
+    public void deleteProduct() {
+        int id = inputID();
+        productList.removeIf(product -> id == product.getId());
+        readWriteFile.writeFile(productList);
+    }
+
+    // Hiển thị danh sách sản phẩm
+    public void displayList() {
+        for (Product pro : productList) {
+            System.out.println(pro.toString());
+        }
+    }
+
+    // Sắp xếp sản phẩm theo ID
+    public void sortProductByID() {
+        Collections.sort(productList,new SorstProductByID());
+        readWriteFile.writeFile(productList);
+    }
+
+    // Sắp xếp sản phẩm theo tên.
+    public void sortProductByName() {
+        Collections.sort(productList,new SortProductByName());
+        readWriteFile.writeFile(productList);
+    }
+
     private int inputID() {
         System.out.println("Enter id: ");
-        return Integer.parseInt(sc.nextLine());
+        while (true) {
+            try {
+                int iD = Integer.parseInt(sc.nextLine());
+                return iD;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+            }
+        }
     }
 
     private String inputName() {
@@ -48,7 +117,14 @@ public class Methods {
 
     private long inputPrice() {
         System.out.println("Nhập giá: ");
-        return Long.parseLong(sc.nextLine());
+        while (true) {
+            try {
+                long price = Long.parseLong(sc.nextLine());
+                return price;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+            }
+        }
     }
 
     private String inputManufacturer() {
@@ -58,7 +134,14 @@ public class Methods {
 
     private int inputAmount() {
         System.out.println("Nhập số lượng: ");
-        return Integer.parseInt(sc.nextLine());
+        while (true) {
+            try {
+                int amount = Integer.parseInt(sc.nextLine());
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+            }
+        }
     }
 
     private String inputOrigin() {

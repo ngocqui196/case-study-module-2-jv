@@ -64,4 +64,16 @@ public class Product implements Serializable {
     public void setOrigin(String origin) {
         this.origin = origin;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", tên='" + name + '\'' +
+                ", giá=" + price +
+                ", hãng='" + manufacturer + '\'' +
+                ", số lượng=" + amount +
+                ", xuất xứ='" + origin + '\'' +
+                '}';
+    }
 }
