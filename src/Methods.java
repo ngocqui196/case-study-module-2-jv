@@ -25,10 +25,10 @@ public class Methods {
         int id = 0;
         do {
             try {
-                System.out.println("Xin mời nhập id sản phẩm");
+                System.out.print("Xin mời nhập id sản phẩm: ");
                 id = Integer.parseInt(sc.nextLine());
             }catch (NumberFormatException e) {
-                System.out.println("Sai số, xin mời nhập lại:");
+                System.out.println("Sai số, xin mời nhập lại.");
             }
         }while (checkDuplication(id) || id == 0);
         String name = inputName();
@@ -99,53 +99,86 @@ public class Methods {
     }
 
     private int inputID() {
-        System.out.println("Enter id: ");
+        System.out.print("Nhập ID: ");
         while (true) {
             try {
                 int iD = Integer.parseInt(sc.nextLine());
                 return iD;
             } catch (NumberFormatException e) {
-                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại.");
             }
         }
     }
 
     private String inputName() {
         System.out.print("Nhập tên: ");
-        return sc.nextLine();
+        while (true) {
+            try{
+                String name = sc.nextLine();
+                if (name.equals("")) {
+                    throw new NoNextLine();
+                }
+                return name;
+            }catch (NoNextLine e) {
+                System.out.println("Không được để trống.");
+            }
+        }
+//        return sc.nextLine();
     }
 
     private long inputPrice() {
-        System.out.println("Nhập giá: ");
+        System.out.print("Nhập giá: ");
         while (true) {
             try {
                 long price = Long.parseLong(sc.nextLine());
                 return price;
             } catch (NumberFormatException e) {
-                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại.");
             }
         }
     }
 
     private String inputManufacturer() {
         System.out.print("Nhập tên hãng: ");
-        return sc.nextLine();
+        while (true) {
+            try{
+                String manufacturer = sc.nextLine();
+                if (manufacturer.equals("")) {
+                    throw new NoNextLine();
+                }
+                return manufacturer;
+            }catch (NoNextLine e) {
+                System.out.println("Không được để trống.");
+            }
+        }
+//        return sc.nextLine();
     }
 
     private int inputAmount() {
-        System.out.println("Nhập số lượng: ");
+        System.out.print("Nhập số lượng: ");
         while (true) {
             try {
                 int amount = Integer.parseInt(sc.nextLine());
                 return amount;
             } catch (NumberFormatException e) {
-                System.out.println("Nhập sai kiểu số. Xin mời nhập lại");
+                System.out.println("Nhập sai kiểu số. Xin mời nhập lại.");
             }
         }
     }
 
     private String inputOrigin() {
-        System.out.println("Nhập xuất xứ: ");
-        return sc.nextLine();
+        System.out.print("Nhập xuất xứ: ");
+        while (true) {
+            try{
+                String origin = sc.nextLine();
+                if (origin.equals("")) {
+                    throw new NoNextLine();
+                }
+                return origin;
+            }catch (NoNextLine e) {
+                System.out.println("Không được để trống.");
+            }
+        }
+//        return sc.nextLine();
     }
 }
