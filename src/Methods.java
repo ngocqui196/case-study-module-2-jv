@@ -81,8 +81,17 @@ public class Methods {
 
     // Hiển thị danh sách sản phẩm
     public void displayList() {
+        System.out.printf("%5s | %20s | %15s | %10s | %10s | %10s | ", "ID", "Tên sản phẩm","Tên hãng","Số lượng","Giá cả","Xuất xứ");
+        System.out.println("--------------------------------------------------------------------------------------");
         for (Product pro : productList) {
-            System.out.println(pro.toString());
+//            System.out.println(pro.toString());
+            System.out.printf("%5d | ", pro.getId());
+            System.out.printf("%20s | ", pro.getName());
+            System.out.printf("%15s | ", pro.getManufacturer());
+            System.out.printf("%7d | ", pro.getAmount());
+            System.out.printf("%10s | ", pro.getPrice());
+            System.out.printf("%10s | ", pro.getOrigin());
+            System.out.println();
         }
     }
 
@@ -123,7 +132,7 @@ public class Methods {
                 System.out.println("Không được để trống.");
             }
         }
-//        return sc.nextLine();
+
     }
 
     private long inputPrice() {
