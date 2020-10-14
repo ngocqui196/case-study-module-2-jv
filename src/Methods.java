@@ -44,10 +44,18 @@ public class Methods {
     // Hiển thị thông tin teo tên
     public void displayProductByName() {
         String name = inputName();
+        System.out.printf("%7s | %20s | %15s | %10s | %10s | %10s | ", "Mã SP", "Tên sản phẩm","Tên hãng","Số lượng","Giá cả","Xuất xứ");
+        System.out.println("----------------------------------------------------------------------------------------");
         for (Product product :
                 productList) {
             if (name.equals(product.getName())) {
-                System.out.println(product.toString());
+                System.out.printf("%7d | ", product.getId());
+                System.out.printf("%20s | ", product.getName());
+                System.out.printf("%15s | ", product.getManufacturer());
+                System.out.printf("%10d | ", product.getAmount());
+                System.out.printf("%10s | ", product.getPrice());
+                System.out.printf("%10s | ", product.getOrigin());
+                System.out.println();
             }
         }
 
@@ -81,14 +89,13 @@ public class Methods {
 
     // Hiển thị danh sách sản phẩm
     public void displayList() {
-        System.out.printf("%5s | %20s | %15s | %10s | %10s | %10s | ", "ID", "Tên sản phẩm","Tên hãng","Số lượng","Giá cả","Xuất xứ");
-        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("%7s | %20s | %15s | %10s | %10s | %10s | ", "Mã SP", "Tên sản phẩm","Tên hãng","Số lượng","Giá cả","Xuất xứ");
+        System.out.println("----------------------------------------------------------------------------------------");
         for (Product pro : productList) {
-//            System.out.println(pro.toString());
-            System.out.printf("%5d | ", pro.getId());
+            System.out.printf("%7d | ", pro.getId());
             System.out.printf("%20s | ", pro.getName());
             System.out.printf("%15s | ", pro.getManufacturer());
-            System.out.printf("%7d | ", pro.getAmount());
+            System.out.printf("%10d | ", pro.getAmount());
             System.out.printf("%10s | ", pro.getPrice());
             System.out.printf("%10s | ", pro.getOrigin());
             System.out.println();
